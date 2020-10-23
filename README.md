@@ -1,6 +1,7 @@
 ### How to set up Vue in the smallest way possible
 
-1. Set up a project with npm ```mkdir <project-name> cd <project-name>``` ```npm i -y```
+1. Set up a project with npm 
+```mkdir <project-name>``` ```cd <project-name>``` ```npm i -y```
 2. Create a project directory with the following structure, note ```package.json``` will already be created
 
 ```
@@ -11,7 +12,8 @@ public
   └── main.css
 ```
 
-3. As per [this blog](https://markus.oberlehner.net/blog/goodbye-webpack-building-vue-applications-without-webpack/) we need Browsersync to create a little server to take advantage of the Vue's ES6 modules.  ```npm install browser-sync```
+3. As per [this blog](https://markus.oberlehner.net/blog/goodbye-webpack-building-vue-applications-without-webpack/) we need Browsersync to create a little server to take advantage of the Vue's ES6 modules.  
+```npm install browser-sync```
 4. We can then add the Browsersync start command to our ```package.json``` file:
 
 ```

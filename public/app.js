@@ -7,13 +7,13 @@ const App = {
     }
   },
   template: `
-    <div>
-      <h1>I'm Mary Poppins Y'All!</h1>
+    <section>
+      <h1>My Amazing Selector!</h1>
       <select v-model="selectedStuff">
         <option value="" disabled>Select a Thing:</option>
         <option v-for="thing in this.stuff">{{thing}}</option>
       </select>
-    </div>
+    </section>
   `,
 };
 

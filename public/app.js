@@ -2,7 +2,7 @@ const App = {
   name: 'App',
   data() {
     return {
-      stuff: ["banana", "orange", "apple"],
+      stuff: ["Banana", "Orange", "Apple"],
       selectedStuff: ''
     }
   },
@@ -10,7 +10,7 @@ const App = {
     <section>
       <h1>My Amazing Selector!</h1>
       <select v-model="selectedStuff">
-        <option value="" disabled>Select a Thing:</option>
+        <option value="" selected="selected" disabled>Select a Thing:</option>
         <option v-for="thing in this.stuff">{{thing}}</option>
       </select>
     </section>

@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
   <script src="./app.js" type="module"></script>
+  <script src="./maps.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWHqxFV3h5m4DuSSmQgHm3QO5CDjEWLjE&callback=initMap" defer></script>
   <link rel="stylesheet" href="./main.css">
   <title>My Amazing Selector</title>
 </head>
@@ -12,18 +14,5 @@
   <section id="app"></section>
   <br>
 	<section id="map"></section>
-	<script>
-		let map;
-		function initMap() {
-			map = new google.maps.Map( document.getElementById( 'map' ), {
-				center: {
-					lat: 51.513329,
-					lng: -0.088950
-				},
-				zoom: 14
-			});
-		}
-	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWHqxFV3h5m4DuSSmQgHm3QO5CDjEWLjE&callback=initMap" async defer></script>
 </body>
 </html>

@@ -6,13 +6,17 @@ function initMap() {
     },
     zoom: 14
   });
-  
-  new google.maps.Marker({
-    position: {
-      lat: 51.513329,
-      lng: -0.088950
-    },
-    map,
-    title: `I'm Mary Poppins Y'All!`
+
+  google.maps.event.addListener(map, 'click', function(event) {
+    const position = event.latLng.toJSON()
+    new google.maps.Marker({
+      position: {
+        lat: position.lat,
+        lng: position.lng
+      },
+      draggable: true,
+      map,
+      title: `I'm Mary Poppins Y'All!`
+    })
   })
 }

@@ -18,7 +18,7 @@ public
 
 ```
 "scripts": {
-    "start": "browser-sync start --server 'src' --files 'src' --single"
+    "start": "browser-sync start --server 'public' --files 'public' --single"
   }
 ```
 

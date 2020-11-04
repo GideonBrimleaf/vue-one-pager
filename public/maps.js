@@ -9,7 +9,7 @@ function initMap() {
 
   let markers= []
 
-  map.addListener('click', function(event) {
+  map.addListener('click', (event) => {
     const position = event.latLng.toJSON()
 
     if (markers.length < 2) {
@@ -26,10 +26,18 @@ function initMap() {
 
       markers.push(marker)
 
-      marker.addListener('click', function() {
+      marker.addListener('click', () => {
         markers = markers.filter(mapMarker => mapMarker.id === marker.id)
         marker.setMap(null)
       })
+    }
+
+    if (markers.length === 2) {
+      const distanceInMetres = google.maps.geometry.spherical.computeDistanceBetween(
+        markers[0].getPosition(),
+        markers[1].getPosition()
+      )
+      console.log(`the distance is`, distanceInMetres)
     }
   })
 }

@@ -7,21 +7,29 @@ function initMap() {
     zoom: 14
   });
 
-  let markerCounter = 0
+  let markers= []
 
-  google.maps.event.addListener(map, 'click', function(event) {
+  map.addListener('click', function(event) {
     const position = event.latLng.toJSON()
-    if (markerCounter < 2) {
-      new google.maps.Marker({
+
+    if (markers.length < 2) {
+      const marker = new google.maps.Marker({
         position: {
           lat: position.lat,
           lng: position.lng
         },
         draggable: true,
         map,
-        title: `I'm Mary Poppins Y'All!`
+        title: `I'm Mary Poppins Y'All!`,
+        id: position.lat + '' + position.lng
       })
-      markerCounter += 1
+
+      markers.push(marker)
+
+      marker.addListener('click', function() {
+        markers = markers.filter(mapMarker => mapMarker.id === marker.id)
+        marker.setMap(null)
+      })
     }
   })
 }

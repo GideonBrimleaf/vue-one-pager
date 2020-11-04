@@ -7,16 +7,21 @@ function initMap() {
     zoom: 14
   });
 
+  let markerCounter = 0
+
   google.maps.event.addListener(map, 'click', function(event) {
     const position = event.latLng.toJSON()
-    new google.maps.Marker({
-      position: {
-        lat: position.lat,
-        lng: position.lng
-      },
-      draggable: true,
-      map,
-      title: `I'm Mary Poppins Y'All!`
-    })
+    if (markerCounter < 2) {
+      new google.maps.Marker({
+        position: {
+          lat: position.lat,
+          lng: position.lng
+        },
+        draggable: true,
+        map,
+        title: `I'm Mary Poppins Y'All!`
+      })
+      markerCounter += 1
+    }
   })
 }

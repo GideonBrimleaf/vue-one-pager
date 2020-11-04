@@ -1,3 +1,12 @@
+html {
+  height: 90%;
+}
+
 body {
+  height: 90%;
   background-color: dodgerblue;
+}
+
+#map {
+  height: 100%;
 }

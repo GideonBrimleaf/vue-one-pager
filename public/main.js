@@ -1,4 +1,4 @@
-import gmapsInit from './components/gmaps.js'
+// import gmapsInit from './components/gmaps.js'
 
 const App = {
   name: 'App',
@@ -10,16 +10,25 @@ const App = {
     }
   },
   mounted() {
-    gmapsInit()
-    .then((googleMapObject) => this.initMap(googleMapObject))
-    .catch(error => console.error(error))
+    window.gmapsCallback = () => this.initMap()
+    this.gmapsInit()
   },
   methods: {
-    initMap: function(googleMapObject) {
+    gmapsInit: function() {
+      const apiKey = 'AIzaSyBWHqxFV3h5m4DuSSmQgHm3QO5CDjEWLjE';
+      const callbackName = 'gmapsCallback';
+
+      const script = document.createElement('script');
+      script.async = true;
+      script.defer = true;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=${callbackName}&libraries=geometry`;
+      document.querySelector('head').appendChild(script);
+    },
+    initMap: function() {
       
       console.log('the element is', this.$el)
     
-      const map = new googleMapObject.maps.Map( document.getElementById( 'map' ), {
+      const map = new google.maps.Map( document.getElementById( 'map' ), {
         center: {
           lat: 51.513329,
           lng: -0.088950
@@ -33,7 +42,7 @@ const App = {
         const position = event.latLng.toJSON()
     
         if (markers.length < 2) {
-          const marker = new googleMapObject.maps.Marker({
+          const marker = new google.maps.Marker({
             position: {
               lat: position.lat,
               lng: position.lng
@@ -53,7 +62,7 @@ const App = {
         }
     
         if (markers.length === 2) {
-          const distanceInMetres = googleMapObject.maps.geometry.spherical.computeDistanceBetween(
+          const distanceInMetres = google.maps.geometry.spherical.computeDistanceBetween(
             markers[0].getPosition(),
             markers[1].getPosition()
           )

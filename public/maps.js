@@ -1,4 +1,7 @@
 function initMap() {
+
+  const eventBus = new Vue()
+
   const map = new google.maps.Map( document.getElementById( 'map' ), {
     center: {
       lat: 51.513329,
@@ -37,7 +40,10 @@ function initMap() {
         markers[0].getPosition(),
         markers[1].getPosition()
       )
-      console.log(`the distance is`, distanceInMetres)
+      
+      eventBus.$emit('distance-calculated', distanceInMetres)
+      console.log(distanceInMetres)
+
     }
   })
 }

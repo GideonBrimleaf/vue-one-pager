@@ -7,6 +7,10 @@ body {
   background-color: dodgerblue;
 }
 
+#app {
+  height: 100%;
+}
+
 #map {
   height: 100%;
 }

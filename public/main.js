@@ -11,15 +11,15 @@ const App = {
   },
   mounted() {
     gmapsInit()
-    .then(() => this.initMap())
+    .then((googleMapObject) => this.initMap(googleMapObject))
     .catch(error => console.error(error))
   },
   methods: {
-    initMap: function() {
+    initMap: function(googleMapObject) {
       
       console.log('the element is', this.$el)
     
-      const map = new google.maps.Map( document.getElementById( 'map' ), {
+      const map = new googleMapObject.maps.Map( document.getElementById( 'map' ), {
         center: {
           lat: 51.513329,
           lng: -0.088950
@@ -33,7 +33,7 @@ const App = {
         const position = event.latLng.toJSON()
     
         if (markers.length < 2) {
-          const marker = new google.maps.Marker({
+          const marker = new googleMapObject.maps.Marker({
             position: {
               lat: position.lat,
               lng: position.lng
@@ -53,7 +53,7 @@ const App = {
         }
     
         if (markers.length === 2) {
-          const distanceInMetres = google.maps.geometry.spherical.computeDistanceBetween(
+          const distanceInMetres = googleMapObject.maps.geometry.spherical.computeDistanceBetween(
             markers[0].getPosition(),
             markers[1].getPosition()
           )

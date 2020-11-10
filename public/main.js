@@ -15,8 +15,10 @@ const App = {
   },
   methods: {
     initMap: function() {
+      
+      console.log('the element is', this.$el)
     
-      new google.maps.Map( document.getElementById( 'map' ), {
+      const map = new google.maps.Map( document.getElementById( 'map' ), {
         center: {
           lat: 51.513329,
           lng: -0.088950
@@ -24,42 +26,41 @@ const App = {
         zoom: 14
       });
     
-      // let markers= []
+      let markers= []
     
-      // map.addListener('click', (event) => {
-      //   const position = event.latLng.toJSON()
+      map.addListener('click', (event) => {
+        const position = event.latLng.toJSON()
     
-      //   if (markers.length < 2) {
-      //     const marker = new google.maps.Marker({
-      //       position: {
-      //         lat: position.lat,
-      //         lng: position.lng
-      //       },
-      //       draggable: true,
-      //       map,
-      //       title: `I'm Mary Poppins Y'All!`,
-      //       id: position.lat + '' + position.lng
-      //     })
+        if (markers.length < 2) {
+          const marker = new google.maps.Marker({
+            position: {
+              lat: position.lat,
+              lng: position.lng
+            },
+            draggable: true,
+            map,
+            title: `I'm Mary Poppins Y'All!`,
+            id: position.lat + '' + position.lng
+          })
     
-      //     markers.push(marker)
+          markers.push(marker)
     
-      //     marker.addListener('click', () => {
-      //       markers = markers.filter(mapMarker => mapMarker.id === marker.id)
-      //       marker.setMap(null)
-      //     })
-      //   }
+          marker.addListener('click', () => {
+            markers = markers.filter(mapMarker => mapMarker.id === marker.id)
+            marker.setMap(null)
+          })
+        }
     
-      //   if (markers.length === 2) {
-      //     const distanceInMetres = google.maps.geometry.spherical.computeDistanceBetween(
-      //       markers[0].getPosition(),
-      //       markers[1].getPosition()
-      //     )
+        if (markers.length === 2) {
+          const distanceInMetres = google.maps.geometry.spherical.computeDistanceBetween(
+            markers[0].getPosition(),
+            markers[1].getPosition()
+          )
           
-      //     eventBus.$emit('distance-calculated', distanceInMetres)
-      //     console.log(distanceInMetres)
+          console.log('distance in meters is', distanceInMetres)
     
-      //   }
-      // })
+        }
+      })
     }
   },
   template: `

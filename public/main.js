@@ -5,7 +5,8 @@ const App = {
   data() {
     return {
       stuff: ["Banana", "Orange", "Apple"],
-      selectedStuff: ''
+      selectedStuff: '',
+      distanceInMeters: null
     }
   },
   mounted() {
@@ -56,8 +57,9 @@ const App = {
             markers[0].getPosition(),
             markers[1].getPosition()
           )
-          
+
           console.log('distance in meters is', distanceInMetres)
+          this.distanceInMeters = distanceInMetres
     
         }
       })
@@ -71,7 +73,7 @@ const App = {
         <option v-for="thing in this.stuff">{{thing}}</option>
       </select>
       <br>
-      <p>Here's my map!</p>
+      <p v-if="this.distanceInMeters">The distance between the two points is {{this.distanceInMeters}}</p>
     </section>
   `,
 };

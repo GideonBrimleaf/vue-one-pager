@@ -1,5 +1,3 @@
-// import gmapsInit from './components/gmaps.js'
-
 const App = {
   name: 'App',
   data() {

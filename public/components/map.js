@@ -2,8 +2,16 @@ export default {
   name: 'MapView',
   data() {
     return {
-      distanceInMetres: null,
       markers: []
+    }
+  },
+  computed: {
+    distanceInMetres: function() {
+      if (this.markers.length === 2) { 
+      return google.maps.geometry.spherical.computeDistanceBetween(
+        this.markers[0].getPosition(),
+        this.markers[1].getPosition()
+      )}
     }
   },
   mounted() {
@@ -31,8 +39,6 @@ export default {
         zoom: 14
       });
     
-      // let markers= []
-    
       map.addListener('click', (event) => {
         const position = event.latLng.toJSON()
     
@@ -54,16 +60,6 @@ export default {
             this.markers = this.markers.filter(mapMarker => mapMarker.id === marker.id)
             marker.setMap(null)
           })
-        }
-    
-        if (this.markers.length === 2) {
-          const distanceInMetres = google.maps.geometry.spherical.computeDistanceBetween(
-            this.markers[0].getPosition(),
-            this.markers[1].getPosition()
-          )
-
-          this.distanceInMetres = distanceInMetres
-    
         }
       })
     }

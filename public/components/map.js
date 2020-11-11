@@ -2,7 +2,8 @@ export default {
   name: 'MapView',
   data() {
     return {
-      markers: []
+      markers: [],
+      map: null
     }
   },
   computed: {
@@ -31,7 +32,7 @@ export default {
     },
     initMap: function() {
     
-      const map = new google.maps.Map( this.$el, {
+      this.map = new google.maps.Map( this.$el, {
         center: {
           lat: 51.513329,
           lng: -0.088950
@@ -39,30 +40,31 @@ export default {
         zoom: 14
       });
     
-      map.addListener('click', (event) => {
-        const position = event.latLng.toJSON()
+      this.map.addListener('click', (event) => this.addMarker(event))
+    },
+    addMarker: function(event) {
+      const position = event.latLng.toJSON()
     
-        if (this.markers.length < 2) {
-          const marker = new google.maps.Marker({
-            position: {
-              lat: position.lat,
-              lng: position.lng
-            },
-            draggable: true,
-            map,
-            title: `I'm Mary Poppins Y'All!`,
-            id: position.lat + '' + position.lng
-          })
-    
-          this.markers.push(marker)
-    
-          marker.addListener('click', () => {
-            this.markers = this.markers.filter(mapMarker => mapMarker.id === marker.id)
-            marker.setMap(null)
-          })
-        }
-      })
-    }
+      if (this.markers.length < 2) {
+        const marker = new google.maps.Marker({
+          position: {
+            lat: position.lat,
+            lng: position.lng
+          },
+          draggable: true,
+          map: this.map,
+          title: `I'm Mary Poppins Y'All!`,
+          id: position.lat + '' + position.lng
+        })
+  
+        this.markers.push(marker)
+  
+        marker.addListener('click', () => {
+          this.markers = this.markers.filter(mapMarker => mapMarker.id === marker.id)
+          marker.setMap(null)
+        })
+      }
+    } 
   },
   template: `<section id="map"></section>`,
 };

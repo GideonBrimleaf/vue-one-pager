@@ -7,6 +7,6 @@ body {
   background-color: dodgerblue;
 }
 
-.map {
+#map {
   height: 100%;
 }

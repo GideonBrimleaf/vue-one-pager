@@ -32,7 +32,7 @@ const App = {
     }
   },
   template: `
-    <section class="map">
+    <section id="map">
     </section>
   `,
 };

@@ -32,7 +32,7 @@ export default {
     },
     initMap: function() {
     
-      this.map = new google.maps.Map( this.$el, {
+      this.map = new google.maps.Map( this.$refs.mapContainer, {
         center: {
           lat: 51.513329,
           lng: -0.088950
@@ -66,5 +66,10 @@ export default {
       }
     } 
   },
-  template: `<section id="map"></section>`,
+  template: `
+    <section>
+      <main ref="mapContainer"></main>
+      <h3 v-if="distanceInMetres">The distance between the two points is {{this.distanceInMetres}}m</h3>
+    </section>
+  `,
 };

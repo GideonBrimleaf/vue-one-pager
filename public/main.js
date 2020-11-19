@@ -11,7 +11,7 @@ const App = {
   },
   methods: {
     gmapsInit: function() {
-      const apiKey = 'AIzaSyBWHqxFV3h5m4DuSSmQgHm3QO5CDjEWLjE';
+      const apiKey = 'YOUR API KEY HERE';
       const callbackName = 'gmapsCallback';
 
       const script = document.createElement('script');
